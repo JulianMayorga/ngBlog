@@ -5,6 +5,8 @@ node_js:
 before_script:
 - npm install -g bower grunt-cli
 - bower install
+- git config --global user.email "mayorga.julian@gmail.com"
+- git config --global user.name "Travis-CI"
 env:
   global:
     secure: CE5wdWlPwYoRo8aLZAjZQlnnUYCxSHOmkdUvqEfdDcIxAul3+goen8mcvb36Hpu5tq1WzYG8x9VNxmBQ8VeJQfMFUHjhMWfF9GOCoGzyWrYq/LJGyoW6x+Gifr8EUqqJMoOQBenTZwNClyUdJvxW3LStRCLLBWAueMaP4uas/aU=
