@@ -11,5 +11,5 @@ env:
 after_success:
   - git config credential.helper "store --file=.git/credentials"
   - echo "https://${GH_TOKEN}:@github.com" > .git/credentials
-  - node ./node_modules/grunt-cli/bin/grunt build
-  - node ./node_modules/grunt-cli/bin/grunt gh-pages
+  - grunt build
+  - grunt gh-pages
