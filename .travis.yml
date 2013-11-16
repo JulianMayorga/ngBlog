@@ -1,17 +1,33 @@
 language: node_js
 node_js:
-- '0.8'
-- '0.10'
-before_script:
-- npm install -g bower grunt-cli
-- bower install
+- 0.8
+notifications:
+  irc: irc.freenode.org#generator-travis-ci
+branches:
+  only:
+  - master
 env:
   global:
-  - secure: fRJ50qlanbFDgphahl2Mgg+8xxSN46T0zv8/y350CtZJG6tKhmOtNkNZV195V2MB87OUYKUl4tuOTPkhbvoHhEGSlML33OpBMJy7JXPyl7kyN6RlDlL3G5M2pv7wbKWSBu7hJnIrpARwzrYw75JPxTeJ6xlggIjkPJqF6m01veo=
+  - GH_OWNER: JulianMayorga
+  - GH_PROJECT_NAME: ngBlog
+  - secure: t2lXE+XFrm6Lg26bqpju6IpHuBlMLO67LLfMELXDGUcWLGITLsgohNeJpBLmPHC/xdVBDI5dSNwty6NH6HQBxPqqxv6ruVmnQd8bpD/9BZfwp1YFj9E0EBc201GLG1DEKmJRRkG1fnW+ZRGm+pw+uFakS1PZHI1PDftRnfPFUYM=
+before_script:
+- gem update --system
+- npm install -g grunt-cli bower
+script:
+- bower install
+- npm test
 after_success:
-- git config --global user.email "mayorga.julian@gmail.com"
-- git config --global user.name "ElJuli"
-- git config credential.helper "store --file=.git/credentials"
-- echo "https://${GH_TOKEN}:@github.com" > .git/credentials
-- grunt build
-- grunt gh-pages
+- git submodule add -b gh-pages https://${GH_OAUTH_TOKEN}@github.com/${GH_OWNER}/${GH_PROJECT_NAME}
+  site > /dev/null 2>&1
+- cd site
+- if git checkout gh-pages; then git checkout -b gh-pages; fi
+- git rm -r .
+- cp -R ../dist/* .
+- cp ../dist/.* .
+- git add -f .
+- git config user.email "mayorga.julian@gmail.com"
+- git config user.name "ElJuli"
+- git commit -am "feat(gh-pages): add build files [ci skip]"
+- git push https://${GH_OAUTH_TOKEN}@github.com/${GH_OWNER}/${GH_PROJECT_NAME} HEAD:gh-pages
+  > /dev/null 2>&1
