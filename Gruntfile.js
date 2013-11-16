@@ -19,7 +19,9 @@ module.exports = function (grunt) {
     },
     'gh-pages': {
       options: {
-        base: 'dist'
+        base: 'dist',
+        repo: 'https://' + process.env.GH_TOKEN + '@github.com/JulianMayorga/ngBlog.git',
+        silent: true
       },
       src: ['**']
     },
