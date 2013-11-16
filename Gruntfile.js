@@ -20,7 +20,7 @@ module.exports = function (grunt) {
     'gh-pages': {
       options: {
         base: 'dist',
-        repo: 'https://github.com/JulianMayorga/ngBlog.git'
+        repo: 'https://github.com/JulianMayorga/ngBlog'
       },
       src: ['**']
     },
