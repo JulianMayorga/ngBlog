@@ -24,7 +24,8 @@ module.exports = function (grunt) {
         user: {
           name: 'ElJuli',
           email: 'mayorga.julian@gmail.com'
-        }
+        },
+        silent: true
       },
       src: ['**']
     },
