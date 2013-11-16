@@ -20,7 +20,12 @@ module.exports = function (grunt) {
     'gh-pages': {
       options: {
         base: 'dist',
-        repo: 'https://github.com/JulianMayorga/ngBlog'
+        repo: 'https://' + process.env.GH_TOKEN + '@github.com/JulianMayorga/ngBlog',
+        user: {
+          name: 'ElJuli',
+          email: 'mayorga.julian@gmail.com'
+        },
+        silent: true
       },
       src: ['**']
     },
