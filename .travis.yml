@@ -9,6 +9,8 @@ env:
   global:
     secure: CE5wdWlPwYoRo8aLZAjZQlnnUYCxSHOmkdUvqEfdDcIxAul3+goen8mcvb36Hpu5tq1WzYG8x9VNxmBQ8VeJQfMFUHjhMWfF9GOCoGzyWrYq/LJGyoW6x+Gifr8EUqqJMoOQBenTZwNClyUdJvxW3LStRCLLBWAueMaP4uas/aU=
 after_success:
+  - git config --global user.email "mayorga.julian@gmail.com"
+  - git config --global user.name "ElJuli"
   - git config credential.helper "store --file=.git/credentials"
   - echo "https://${GH_TOKEN}:@github.com" > .git/credentials
   - grunt build
