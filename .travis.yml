@@ -7,7 +7,7 @@ env:
   - GH_PROJECT_NAME: ngBlog
   - secure: BH1lVS5a1vrkcj4qwCspKlLjpKPrSgdrOGwNoAockM66Jp7UNNQxBDWtxyZ5pQxrpamBJBp7RkOrFbSNCKLFNDqqYpsLKaei0sQTSEdbI4IlQhfKQFE3YxyB0Dd+Ss+m9aV5T1/F5ZWrtB5w2IzUQtO6OKD3WoelsImas1qiYSI=
 before_script:
-- npm install -g grunt-cli bower
+- npm install -g yo
 script:
 - bower install
 - npm test
