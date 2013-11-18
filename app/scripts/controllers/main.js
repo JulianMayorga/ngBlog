@@ -5,6 +5,10 @@ angular.module('ngBlogApp')
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
+      'AngularJS',
+      'AngularJS',
+      'AngularJS',
+      'AngularJS',
       'Karma'
     ];
   });
