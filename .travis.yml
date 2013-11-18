@@ -5,15 +5,24 @@ env:
   global:
   - GH_OWNER: JulianMayorga
   - GH_PROJECT_NAME: ngBlog
-  - secure: BH1lVS5a1vrkcj4qwCspKlLjpKPrSgdrOGwNoAockM66Jp7UNNQxBDWtxyZ5pQxrpamBJBp7RkOrFbSNCKLFNDqqYpsLKaei0sQTSEdbI4IlQhfKQFE3YxyB0Dd+Ss+m9aV5T1/F5ZWrtB5w2IzUQtO6OKD3WoelsImas1qiYSI=
+  - secure: G96pyZFYN6q+ZbtdZ5aOyOKmdTrO9mJHrTWby/m7nNR211+nDH9ISix+fVYc4/kM0uKTgU4ljTjjz+a3Bv46DgIgts4v3WVNOYtuKGY1TTsVFTXyt2S2+mUnHOtLQscPejQwCwIWXleNsDdSf2HqjINEmatJAgSphpGiMNJ47UU=
 before_script:
 - npm install -g grunt-cli bower
 script:
 - bower install
 - npm test
 after_success:
+- grunt build
+# Pushear a gh-pages
+- git submodule add -b gh-pages https://${GH_OAUTH_TOKEN}@github.com/${GH_OWNER}/${GH_PROJECT_NAME} site > /dev/null 2>&1
+- cd site
+- if git checkout gh-pages; then git checkout -b gh-pages; fi
+- git rm -r .
+- cp -R ../dist/* .
+- cp ../dist/.* .
+- git add -f .
 - git config user.email "mayorga.julian@gmail.com"
 - git config user.name "ElJuli"
-- grunt build
-- grunt gh-pages-clean
-- grunt gh-pages
+- git commit -am "deploy to gh-pages"
+# Any command that using GH_OAUTH_TOKEN must pipe the output to /dev/null to not expose your oauth token
+- git push https://${GH_OAUTH_TOKEN}@github.com/${GH_OWNER}/${GH_PROJECT_NAME} HEAD:gh-pages > /dev/null 2>&1
