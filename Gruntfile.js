@@ -21,7 +21,10 @@ module.exports = function (grunt) {
       options: {
         base: 'dist',
         repo: 'https://' + process.env.GH_TOKEN + '@github.com/JulianMayorga/ngBlog.git',
-        silent: true
+        user: {
+          name: 'ElJuli',
+          email: 'mayorga.julian@gmail.com'
+        }
       },
       src: ['**']
     },
